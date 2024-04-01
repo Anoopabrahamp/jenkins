@@ -11,13 +11,10 @@ pipeline {
     agent any
 
     stages {
-        stage('checkout') {
-            steps {
-                script {
-                    dir("terraform") {
-                        git "https://github.com/Anoopabrahamp/jenkins.git"
-                    }
-                }
+        stage('git clone'){
+            steps{
+                
+                git branch: 'main', credentialsId: 'AnoopJen1', url: 'https://github.com/Anoopabrahamp/jenkins.git'
             }
         }
 
