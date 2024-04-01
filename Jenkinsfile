@@ -8,47 +8,46 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
     }
 
-   agent  any
+    agent any
+
     stages {
         stage('checkout') {
             steps {
-                 script{
-                        dir("terraform")
-                        {
-                            git "https://github.com/Anoopabrahamp/jenkins.git"
-                        }
+                script {
+                    dir("terraform") {
+                        git "https://github.com/Anoopabrahamp/jenkins.git"
                     }
                 }
             }
+        }
 
-        stage('Plan') {
-            steps {
-                sh 'pwd;cd terraform/ ; terraform init'
-                sh "pwd;cd terraform/ ; terraform plan -out tfplan"
-                sh 'pwd;cd terraform/ ; terraform show -no-color tfplan > tfplan.txt'
+       stage('tf_init'){
+            steps{
+                
+                bat "D:\terraform\terraform.exe init"
             }
         }
-        stage('Approval') {
-           when {
-               not {
-                   equals expected: true, actual: params.autoApprove
-               }
-           }
-
-           steps {
-               script {
-                    def plan = readFile 'terraform/tfplan.txt'
-                    input message: "Do you want to apply the plan?",
-                    parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
-               }
-           }
-       }
-
-        stage('Apply') {
-            steps {
-                sh "pwd;cd terraform/ ; terraform apply -input=false tfplan"
+		
+        stage('tf_validate'){
+            steps{
+                
+                bat "D:\terraform\terraform.exe validate"
+            }
+        }
+        
+        stage('tf_plan'){
+            steps{
+                
+                bat "D:\terraform\terraform.exe plan"
+            }
+        }
+        
+        
+        stage('tf_apply'){
+            steps{
+                
+                bat "D:\terraform\terraform.exe apply -auto-approve"
             }
         }
     }
-
-  }
+}
