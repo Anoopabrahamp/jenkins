@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     dir('C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\terraform-standalone') { // Change directory to the terraform directory
-                        bat 'terraform init'
+                        bat 'D:\terraform\terraform.exe init'
                     }
                 }
             }
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     dir('C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\terraform-standalone') { // Change directory to the terraform directory
-                        bat 'terraform plan -out=tfplan'
+                        bat 'D:\terraform\terraform.exe plan -out=tfplan'
                     }
                 }
             }
@@ -37,7 +37,7 @@ pipeline {
             steps {
                 script {
                     dir('C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\terraform-standalone') { // Change directory to the terraform directory
-                        bat 'terraform apply -auto-approve tfplan'
+                        bat 'D:\terraform\terraform.exe apply -auto-approve tfplan'
                     }
                 }
             }
