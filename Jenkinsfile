@@ -16,8 +16,8 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 script {
-                    dir('C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\terraform-standalone') { // Change directory to the terraform directory
-                        bat 'D:\terraform\terraform.exe init'
+                    dir('C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\terraform-standalone') {
+                        bat 'D:\\terraform\\terraform.exe init ../../' // Assuming main.tf is in the root directory of the repository
                     }
                 }
             }
@@ -26,8 +26,8 @@ pipeline {
         stage('Terraform Plan') {
             steps {
                 script {
-                    dir('C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\terraform-standalone') { // Change directory to the terraform directory
-                        bat 'D:\terraform\terraform.exe plan -out=tfplan'
+                    dir('C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\terraform-standalone') {
+                        bat 'D:\\terraform\\terraform.exe plan -out=tfplan ../../' // Assuming main.tf is in the root directory of the repository
                     }
                 }
             }
@@ -36,8 +36,8 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 script {
-                    dir('C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\terraform-standalone') { // Change directory to the terraform directory
-                        bat 'D:\terraform\terraform.exe apply -auto-approve tfplan'
+                    dir('C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\terraform-standalone') {
+                        bat 'D:\\terraform\\terraform.exe apply -auto-approve tfplan ../../' // Assuming main.tf is in the root directory of the repository
                     }
                 }
             }
