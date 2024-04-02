@@ -16,7 +16,9 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 script {
-                    bat "D:\terraform\terraform.exe init"
+                    dir('D:\terraform') { // Change directory to the terraform directory
+                        bat 'terraform init'
+                    }
                 }
             }
         }
@@ -24,7 +26,9 @@ pipeline {
         stage('Terraform Plan') {
             steps {
                 script {
-                    bat "D:\terraform\terraform.exe plan -out=tfplan"
+                    dir('D:\terraform') { // Change directory to the terraform directory
+                        bat 'terraform plan -out=tfplan'
+                    }
                 }
             }
         }
@@ -32,7 +36,9 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 script {
-                    bat "D:\terraform\terraform.exe apply -auto-approve tfplan"
+                    dir('D:\terraform\') { // Change directory to the terraform directory
+                        bat 'terraform apply -auto-approve tfplan'
+                    }
                 }
             }
         }
