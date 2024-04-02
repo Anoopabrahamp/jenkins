@@ -16,7 +16,7 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 script {
-                    dir('D:\terraform') { // Change directory to the terraform directory
+                    dir('D:\\terraform') { // Change directory to the terraform directory
                         bat 'terraform init'
                     }
                 }
@@ -26,7 +26,7 @@ pipeline {
         stage('Terraform Plan') {
             steps {
                 script {
-                    dir('D:\terraform') { // Change directory to the terraform directory
+                    dir('D:\\terraform') { // Change directory to the terraform directory
                         bat 'terraform plan -out=tfplan'
                     }
                 }
@@ -36,7 +36,7 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 script {
-                    dir('D:\terraform\') { // Change directory to the terraform directory
+                    dir('D:\\terraform') { // Change directory to the terraform directory
                         bat 'terraform apply -auto-approve tfplan'
                     }
                 }
