@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     dir('C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\terraform-standalone') {
-                        bat 'terraform init'
+                        bat 'D:\terraform\terraform.exe init'
                     }
                 }
             }
@@ -28,9 +28,10 @@ pipeline {
             steps {
                 script {
                     dir('C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\terraform-standalone') {
-                        bat 'terraform destroy -auto-approve'
+                        bat 'D:\terraform\terraform.exe destroy -auto-approve'
                     }
                 }
             }
         }
     }
+}
